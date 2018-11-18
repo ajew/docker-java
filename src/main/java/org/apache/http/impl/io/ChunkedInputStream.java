@@ -97,6 +97,7 @@ public class ChunkedInputStream extends InputStream {
      *
      * @since 4.4
      */
+    //@ requires in != null;
     public ChunkedInputStream(final SessionInputBuffer in, final MessageConstraints constraints) {
         super();
         this.in = Args.notNull(in, "Session input buffer");
@@ -138,6 +139,7 @@ public class ChunkedInputStream extends InputStream {
      * @throws IOException in case of an I/O error
      */
     @Override
+    // o metodo ensures \result == 1 || \result == b; nao funciona com metodo override
     public int read() throws IOException {
         if (this.closed) {
             throw new IOException("Attempted read from closed stream.");
